@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Big Elite League | Official Team Registration</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0f1c 0%, #0f1a2a 100%);
+      font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* MAIN CARD */
+    .registration-card {
+      max-width: 1000px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.6), 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s;
+    }
+
+    /* ELITE HEADER */
+    .elite-header {
+      background: linear-gradient(120deg, #0b1c2c, #0a2a3b);
+      padding: 2rem 2rem 1.8rem 2rem;
+      color: white;
+      border-bottom: 5px solid #ffd966;
+      position: relative;
+    }
+
+    .elite-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .elite-header h1::before {
+      content: "🏆";
+      font-size: 2.3rem;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .elite-badge {
+      background: #ffd966;
+      color: #0a2a3b;
+      font-weight: 800;
+      display: inline-block;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      margin-top: 0.7rem;
+    }
+
+    .elite-header p {
+      margin-top: 0.6rem;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    /* FORM BODY */
+    .form-body {
+      padding: 2rem 2rem 1.5rem 2rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0b2b3b;
+      border-left: 5px solid #ffb347;
+      padding-left: 1rem;
+      margin: 1.6rem 0 1.2rem 0;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .input-group label {
+      font-weight: 700;
+      color: #1f3e52;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .required-star {
+      color: #e53e3e;
+      font-size: 1rem;
+      margin-left: 4px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      border: 1.5px solid #e2edf2;
+      border-radius: 1rem;
+      background: #fefefe;
+      transition: all 0.2s;
+      outline: none;
+      color: #0a2a3b;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #ffb347;
+      box-shadow: 0 0 0 3px rgba(255, 180, 71, 0.2);
+      background: #ffffff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    /* TERMS & CONDITIONS BOX */
+    .terms-container {
+      background: #fafcfd;
+      border-radius: 1.2rem;
+      padding: 1.2rem;
+      border: 1px solid #e6f0f5;
+      margin: 0.5rem 0 0 0;
+    }
+
+    .terms-scroll {
+      max-height: 180px;
+      overflow-y: auto;
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 1rem;
+      border: 1px solid #eef2f8;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #2c4b66;
+      margin-bottom: 1.2rem;
+    }
+
+    .terms-scroll p {
+      margin-bottom: 0.8rem;
+    }
+
+    .terms-scroll strong {
+      color: #0f3b4f;
+    }
+
+    .accept-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .accept-row input {
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      accent-color: #ffb347;
+    }
+
+    .accept-row label {
+      font-weight: 600;
+      color: #0f2f40;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* BUTTONS */
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.85rem 2rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.25s;
+    }
+
+    .btn-primary {
+      background: #0b2b3b;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary:hover {
+      background: #ffb347;
+      color: #0a2a3b;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #eef3f7;
+      color: #1f526d;
+    }
+
+    .btn-secondary:hover {
+      background: #e2eaf0;
+    }
+
+    /* ALERTS */
+    .alert {
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      display: none;
+    }
+
+    .alert-success {
+      background: #d9f5e6;
+      border-left: 6px solid #10b981;
+      color: #0a5c3e;
+    }
+
+    .alert-error {
+      background: #ffe6e5;
+      border-left: 6px solid #ef4444;
+      color: #9b2c2c;
+    }
+
+    footer {
+      background: #f8fafc;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #4e6e88;
+      border-top: 1px solid #eef2f6;
+    }
+
+    @media (max-width: 700px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .full-width {
+        grid-column: span 1;
+      }
+      .form-body {
+        padding: 1.5rem;
+      }
+      .elite-header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="registration-card">
+  <div class="elite-header">
+    <h1>BIG ELITE LEAGUE</h1>
+    <p>Official team registration · Elite division · Season 2026</p>
+    <div class="elite-badge">⭐ PREMIER REGISTRATION ⭐</div>
+  </div>
+
+  <div class="form-body">
+    <div id="successAlert" class="alert alert-success">✅ Registration successful! Welcome to the Big Elite League.</div>
+    <div id="errorAlert" class="alert alert-error">⚠️ Please check required fields before submitting.</div>
+
+    <form id="eliteRegForm">
+      <!-- SECTION 1: TEAM & MANAGER INFO (includes Name, Team Name, Number, Email) -->
+      <div class="section-title">🏅 Team & Manager details</div>
+      <div class="form-grid">
+        <div class="input-group full-width">
+          <label>👥 Team Name <span class="required-star">*</span></label>
+          <input type="text" id="teamName" placeholder="e.g., Elite Warriors, Titans FC, Phoenix Rising" autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label>🧑‍💼 Manager / Representative Full Name <span class="required-star">*</span></label>
+          <input type="text" id="managerName" placeholder="First and last name">
+        </div>
+        <div class="input-group">
+          <label>📞 Contact Number (Mobile/Phone) <span class="required-star">*</span></label>
+          <input type="tel" id="phoneNumber" placeholder="+1 555 123 4567">
+        </div>
+        <div class="input-group">
+          <label>📧 Email Address <span class="required-star">*</span></label>
+          <input type="email" id="emailAddress" placeholder="manager@bigelite.com">
+        </div>
+        <div class="input-group full-width">
+          <label>📍 Team Location (City / Region)</label>
+          <input type="text" id="location" placeholder="City, State">
+        </div>
+        <div class="input-group full-width">
+          <label>⚽ Additional note (optional)</label>
+          <textarea id="additionalInfo" placeholder="Tell us about your team, achievements, or any special request..."></textarea>
+        </div>
+      </div>
+
+      <!-- SECTION 2: TERMS & CONDITIONS (full terms and accept) -->
+      <div class="section-title">📜 League Terms & Conditions</div>
+      <div class="terms-container">
+        <div class="terms-scroll">
+          <p><strong>BIG ELITE LEAGUE – OFFICIAL TERMS AND CONDITIONS</strong></p>
+          <p>1. <strong>Eligibility:</strong> All registered teams must have at least 11 registered players. Team representatives must be 18+ years old. Any false information may lead to disqualification.</p>
+          <p>2. <strong>Code of Conduct:</strong> Teams and their members must maintain fair play, respect officials, opponents, and spectators. Unsportsmanlike conduct will result in fines or suspension.</p>
+          <p>3. <strong>Registration Fee:</strong> A non-refundable registration fee of $250 is required within 7 days after approval. Failure to pay results in forfeiture of spot.</p>
+          <p>4. <strong>Match Scheduling:</strong> The league reserves the right to set fixtures. Postponements are only allowed under extreme weather or mutual agreement with league committee.</p>
+          <p>5. <strong>Insurance & Liability:</strong> All participants play at their own risk. The Big Elite League is not liable for injuries, loss, or theft of personal property during events.</p>
+          <p>6. <strong>Roster Changes:</strong> Teams may add or remove players before the deadline. Each new player must be registered with full name & ID.</p>
+          <p>7. <strong>Disciplinary Actions:</strong> Red cards, violent conduct, or abusive language may lead to player/team suspension or expulsion from the league without refund.</p>
+          <p>8. <strong>Image & Media:</strong> By registering, teams grant permission to use photographs, video footage, and team names for promotional purposes.</p>
+          <p>9. <strong>Amendments:</strong> Big Elite League reserves the right to update rules at any time with fair notice to registered teams.</p>
+          <p>10. <strong>Acceptance:</strong> Checking the box below and submitting this form constitutes a binding agreement to all terms above.</p>
+        </div>
+        <div class="accept-row">
+          <input type="checkbox" id="termsAccepted">
+          <label for="termsAccepted"> I have read, understood, and agree to all the <strong>Big Elite League Terms & Conditions</strong> and the code of conduct. <span class="required-star">*</span></label>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="resetFormBtn" class="btn btn-secondary">Clear form</button>
+        <button type="submit" class="btn btn-primary">✔ Register team for Big Elite League</button>
+      </div>
+    </form>
+  </div>
+  <footer>
+    🏆 Big Elite League · Official Registration Portal · All fields marked with * are mandatory.
+  </footer>
+</div>
+
+<script>
+  (function() {
+    // DOM elements
+    const form = document.getElementById('eliteRegForm');
+    const resetBtn = document.getElementById('resetFormBtn');
+    const successDiv = document.getElementById('successAlert');
+    const errorDiv = document.getElementById('errorAlert');
+
+    // Required fields
+    const teamNameInput = document.getElementById('teamName');
+    const managerNameInput = document.getElementById('managerName');
+    const phoneInput = document.getElementById('phoneNumber');
+    const emailInput = document.getElementById('emailAddress');
+    const termsCheckbox = document.getElementById('termsAccepted');
+
+    // Optional fields (for data logging)
+    const locationInput = document.getElementById('location');
+    const additionalInfoText = document.getElementById('additionalInfo');
+
+    // Helper: hide alerts
+    function hideAlerts() {
+      successDiv.style.display = 'none';
+      errorDiv.style.display = 'none';
+    }
+
+    // Show error with custom message
+    function showError(message) {
+      errorDiv.innerHTML = `⚠️ ${message}`;
+      errorDiv.style.display = 'block';
+      successDiv.style.display = 'none';
+      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function showSuccess(teamName, email) {
+      successDiv.innerHTML = `✅ Registration successful! Team "${teamName}" is now registered for the Big Elite League. A confirmation email has been sent to ${email}. Welcome to the elite! 🏆`;
+      successDiv.style.display = 'block';
+      errorDiv.style.display = 'none';
+      successDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Validation function
+    function validateForm() {
+      const teamName = teamNameInput.value.trim();
+      const managerName = managerNameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const email = emailInput.value.trim();
+      const termsAccepted = termsCheckbox.checked;
+
+      const missing = [];
+
+      if (!teamName) missing.push('Team Name is required');
+      if (!managerName) missing.push('Manager / Representative Full Name is required');
+      if (!phone) missing.push('Contact Number is required');
+      if (!email) missing.push('Email Address is required');
+      else if (!/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email)) missing.push('Enter a valid email address (e.g., name@domain.com)');
+
+      if (!termsAccepted) missing.push('You must accept the Terms & Conditions to register');
+
+      if (missing.length > 0) {
+        showError(missing.join(' · '));
+        return false;
+      }
+      return true;
+    }
+
+    // Handle submit
+    function handleSubmit(event) {
+      event.preventDefault();
+      hideAlerts();
+
+      if (!validateForm()) return;
+
+      // Gather all data for console / simulation
+      const teamName = teamNameInput.value.trim();
+      const managerName = managerNameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const email = emailInput.value.trim();
+      const location = locationInput.value.trim();
+      const additional = additionalInfoText.value.trim();
+
+      // Build registration object (for developer/record)
+      const registrationData = {
+        league: "Big Elite League",
+        team: {
+          teamName: teamName,
+          location: location || "Not specified",
+          additionalInfo: additional || ""
+        },
+        manager: {
+          fullName: managerName,
+          phone: phone,
+          email: email
+        },
+        termsAccepted: true,
+        registrationTimestamp: new Date().toISOString(),
+        status: "pending verification"
+      };
+
+      console.log("🏆 BIG ELITE LEAGUE REGISTRATION:", registrationData);
+
+      // Show success to user
+      showSuccess(teamName, email);
+
+      // Optional: reset? we do not automatically reset to avoid confusion, but user can clear manually.
+      // You can uncomment next line if you prefer reset after success, but better keep data visible.
+      // However we keep form filled, they can reset via clear button.
+    }
+
+    // Full reset / clear form
+    function resetFullForm() {
+      teamNameInput.value = '';
+      managerNameInput.value = '';
+      phoneInput.value = '';
+      emailInput.value = '';
+      locationInput.value = '';
+      additionalInfoText.value = '';
+      termsCheckbox.checked = false;
+      hideAlerts();
+      teamNameInput.focus();
+    }
+
+    // Event listeners
+    form.addEventListener('submit', handleSubmit);
+    resetBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      resetFullForm();
+    });
+
+    // initial hide alerts
+    hideAlerts();
+  })();
+</script>
+</body>
+</html>
